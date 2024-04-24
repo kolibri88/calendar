@@ -4,128 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>ДЗ Календарь</title>
 </head>
 
 <body>
   <div class="container">
-    <script>
-      function createCalendar(elem, year, month) {
-        elem = document.querySelector(elem)
-        const myDiv = document.createElement('div')
-        let mon = month - 1;
-        let d = new Date(year, mon)
-        let options = {
-          month: 'long'
-        }
-        let table = `
-      <table>
-        <caption>${d.toLocaleString("ru", options)} ${year}</caption>
-        <tr>
-          <th>пн</th>
-          <th>вт</th>
-          <th>ср</th>
-          <th>чт</th>
-          <th>пт</th>
-          <th>сб</th>
-          <th>вс</th>
-        </tr>
-        <tr>
-      `;
-
-        for (let i = 0; i < getDay(d); i++) {
-          table += '<td></td>'
-        }
-
-        while (d.getMonth() == mon) {
-          table += '<td>' + d.getDate() + '</td>'
-          if (getDay(d) % 7 == 6) {
-            table += '</tr><tr>'
-          }
-          d.setDate(d.getDate() + 1)
-        }
-
-        if (getDay(d) != 0) {
-          for (let i = getDay(d); i < 7; i++) {
-            table += '<td></td>'
-          }
-        }
-
-        table += '</tr></table>';
-        myDiv.innerHTML = table
-        elem.append(myDiv)
-      }
-
-      function getDay(data) {
-        let day = data.getDay();
-        if (day == 0) day = 7;
-        return day - 1;
-      }
-
-
-      for (let i = 1; i <= 12; i++) {
-        createCalendar('div', 2024, i)
-      }
-    </script>
+    <script src="main.js"></script>
   </div>
-  <style>
-    * {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-    }
 
-    body {
-      background-color: #424141;
-    }
-
-    table {
-      border-collapse: collapse;
-      margin-bottom: 10px;
-      margin-right: 10px;
-      border-radius: 25px;
-      box-shadow: 0 14px 28px rgba(19, 238, 201, 0.3), 0 10px 10px rgba(19, 238, 201, 0.3);
-      background-color: #1a1819;
-    }
-
-    caption {
-      padding: 10px 0;
-      background-color: #1a1819;
-      border-top-left-radius: 25px;
-      border-top-right-radius: 25px;
-      font-weight: 700;
-      color: rgba(19, 238, 201);
-    }
-
-    td,
-    th {
-      padding: 8px;
-      text-align: center;
-      font-size: 18px;
-      color: rgba(19, 238, 201);
-    }
-
-    th {
-      font-weight: bold;
-      background-color: #1a1819;
-    }
-
-   
-
-    tr:last-child td:last-child {
-      border-bottom-right-radius: 25px;
-    }
-
-    tr:last-child td:first-child {
-      border-bottom-left-radius: 25px;
-    }
-
-    .container {
-      margin: 0 auto;
-      max-width: 1300px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-    }
-  </style>
 </body>
 
 </html>
